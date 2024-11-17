@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import { Button } from './components/Button/Button';
+import { Input } from './components/Input/Input';
 
 export function App() {
 
@@ -21,12 +22,12 @@ export function App() {
     <>
       <h1>Giv's raffle</h1>
       <div className='inputNums'>
-        <input
+        <Input
           type='number'
           onChange={(e) => setMinNumber(parseInt(e.target.value))}
           value={minNumber}
         />
-        <input
+        <Input
           type='number'
           onChange={(e) => setMaxNumber(parseInt(e.target.value))}
           value={maxNumber} />
