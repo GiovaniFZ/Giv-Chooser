@@ -7,12 +7,12 @@ export const Button = styled.button`
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #3E754D;
+  background-color: ${props => props.theme["orange-500"]};
   cursor: pointer;
   margin: 1rem;
   color: ${props => props.theme.white};
   transition: background-color 0.25s;
   &:hover{
-    background-color: #33B555;
+    background-color: ${props => props.theme.orange};
   }
 `
