@@ -10,6 +10,7 @@ export const Button = styled.button`
   background-color: #3E754D;
   cursor: pointer;
   margin: 1rem;
+  color: ${props => props.theme.white};
   transition: background-color 0.25s;
   &:hover{
     background-color: #33B555;

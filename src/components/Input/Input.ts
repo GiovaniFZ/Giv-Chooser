@@ -12,6 +12,9 @@ color: #000;
 &:focus {
   outline: 5px solid ${props => props.theme["green-300"]};
 }
+@media (max-width: 860px){
+  width: 20%;
+}
 `
 
 export const InputField = styled.div`
