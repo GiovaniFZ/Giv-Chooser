@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './App.css'
+import { Button } from './components/Button/Button';
 
 export function App() {
 
@@ -37,7 +38,7 @@ export function App() {
           <h1>{getGeneratedNumber()}</h1>
         </div>
       )}
-      <button onClick={() => handleClick()}>Draw!</button>
+      <Button onClick={() => handleClick()}>Draw!</Button>
     </>
   )
 }
