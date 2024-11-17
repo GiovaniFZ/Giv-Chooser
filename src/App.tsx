@@ -1,12 +1,14 @@
-import { ChangeEvent, FormEvent, SetStateAction, useState } from 'react';
+import { useState } from 'react';
 import './App.css';
-import { Button } from './components/Button/Button';
-import { Input, InputField } from './components/Input/Input';
+import { Button } from './components/Button';
+import { Input, InputField } from './components/Input';
 import { useForm } from 'react-hook-form';
+import { GenNumberField } from './components/GenNumberField';
 
 interface Data {
   minNumber: number,
   maxNumber: number,
+  quantity: number,
 }
 
 export function App() {
@@ -26,9 +28,9 @@ export function App() {
     <>
       <header>
         <h1>Giv's Raffle</h1>
-        <p>Choose a number between:</p>
       </header>
       <form onSubmit={handleSubmit(handleSubmitValues)}>
+      <p>Choose <Input type='number' {...register('quantity', { valueAsNumber: true })} /> number(s) between:</p>
         <InputField>
           <Input
             type="number"
@@ -48,7 +50,7 @@ export function App() {
         {showNumber && (
           <div>
             <h2>Drawn number:</h2>
-            <h1>{generatedNumber}</h1>
+            <GenNumberField>{generatedNumber}</GenNumberField>
           </div>
         )}
         <Button type="submit" disabled={!!error}>
