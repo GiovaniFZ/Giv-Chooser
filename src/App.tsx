@@ -13,7 +13,6 @@ interface Data {
 
 export function App() {
   const [showNumber, setShowNumber] = useState(false);
-  const [error, setError] = useState('');
   const [generatedNumber, setGeneratedNumber] = useState(0);
   const { register, handleSubmit, reset } = useForm<Data>();
 
@@ -46,14 +45,13 @@ export function App() {
             {...register('maxNumber', { valueAsNumber: true })}
           />
         </InputField>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
         {showNumber && (
           <div>
             <h2>Drawn number:</h2>
             <GenNumberField>{generatedNumber}</GenNumberField>
           </div>
         )}
-        <Button type="submit" disabled={!!error}>
+        <Button type="submit">
           Draw!
         </Button>
       </form>
