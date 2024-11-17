@@ -1,4 +1,4 @@
-import { ChangeEvent, SetStateAction, useState } from 'react';
+import { ChangeEvent, FormEvent, SetStateAction, useState } from 'react';
 import './App.css';
 import { Button } from './components/Button/Button';
 import { Input, InputField } from './components/Input/Input';
@@ -33,7 +33,7 @@ export function App() {
     return Math.floor(Math.random() * (max + 1 - min) + min);
   }
 
-  function handleSubmit(e: Event) {
+  function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (validateInputs()) {
       setGeneratedNumber(getGeneratedNumber());
