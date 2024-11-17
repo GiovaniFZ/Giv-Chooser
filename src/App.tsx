@@ -2,48 +2,24 @@ import { ChangeEvent, FormEvent, SetStateAction, useState } from 'react';
 import './App.css';
 import { Button } from './components/Button/Button';
 import { Input, InputField } from './components/Input/Input';
+import { useForm } from 'react-hook-form';
+
+interface Data {
+  minNumber: number,
+  maxNumber: number,
+}
 
 export function App() {
   const [showNumber, setShowNumber] = useState(false);
-  const [minNumber, setMinNumber] = useState('');
-  const [maxNumber, setMaxNumber] = useState('');
   const [error, setError] = useState('');
   const [generatedNumber, setGeneratedNumber] = useState(0);
+  const { register, handleSubmit, reset } = useForm<Data>();
 
-  function validateInputs() {
-    const min = parseInt(minNumber);
-    const max = parseInt(maxNumber);
-
-    if (isNaN(min) || isNaN(max)) {
-      setError('Please enter valid numbers');
-      return false;
-    }
-    if (min > max) {
-      setError("Min number can't be more than max number");
-      return false;
-    }
-    setError('');
-    return true;
-  }
-
-  function getGeneratedNumber() {
-    const min = parseInt(minNumber);
-    const max = parseInt(maxNumber);
-
-    return Math.floor(Math.random() * (max + 1 - min) + min);
-  }
-
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    if (validateInputs()) {
-      setGeneratedNumber(getGeneratedNumber());
-      setShowNumber(true);
-    }
-  }
-
-  function handleInputChange(e: ChangeEvent<HTMLInputElement>, setter: { (value: SetStateAction<string>): void; (value: SetStateAction<string>): void; (arg0: any): void; }) {
-    setter(e.target.value);
-    setError('');
+  const handleSubmitValues = (data: Data) => {
+    const {maxNumber, minNumber} = data;
+    const number = Math.floor(Math.random() * (maxNumber + 1 - minNumber) + minNumber);
+    setGeneratedNumber(number);
+    setShowNumber(true);
   }
 
   return (
@@ -52,22 +28,20 @@ export function App() {
         <h1>Giv's Raffle</h1>
         <p>Choose a number between:</p>
       </header>
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <form onSubmit={handleSubmit(handleSubmitValues)}>
         <InputField>
           <Input
             type="number"
-            placeholder="Num1"
-            onChange={(e) => handleInputChange(e, setMinNumber)}
-            value={minNumber}
+            placeholder="Min"
             aria-label="Minimum number"
+            {...register('minNumber', { valueAsNumber: true })}
           />
           <p>and</p>
           <Input
             type="number"
-            placeholder="Num2"
-            onChange={(e) => handleInputChange(e, setMaxNumber)}
-            value={maxNumber}
+            placeholder="Max"
             aria-label="Maximum number"
+            {...register('maxNumber', { valueAsNumber: true })}
           />
         </InputField>
         {error && <p style={{ color: 'red' }}>{error}</p>}
@@ -83,10 +57,8 @@ export function App() {
       </form>
       <Button
         onClick={() => {
-          setMinNumber('');
-          setMaxNumber('');
           setShowNumber(false);
-          setError('');
+          reset();
         }}
       >
         Reset
