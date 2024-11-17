@@ -9,6 +9,7 @@ export const Button = styled.button`
   font-family: inherit;
   background-color: #3E754D;
   cursor: pointer;
+  margin: 1rem;
   transition: background-color 0.25s;
   &:hover{
     background-color: #33B555;
