@@ -1,8 +1,19 @@
 import { Header } from "./header"
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { faDice } from '@fortawesome/free-solid-svg-icons';
 export function HeaderComponent(){
-    return (
-        <Header>
-            <a>Giv's Raffle</a>
-        </Header>
+  return (
+    <Header>
+      <a
+        href="#"
+        style={{color: "white", textDecoration: "none"}}
+      >
+        <FontAwesomeIcon
+          icon={faDice}
+          style={{paddingRight: "7px"}}
+        />
+        Giv's Raffle
+      </a>
+    </Header>
     )
 }

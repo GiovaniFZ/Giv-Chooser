@@ -4,6 +4,8 @@ import { Button } from './components/Button';
 import { Input, InputField } from './components/Input';
 import { useForm } from 'react-hook-form';
 import { GenNumberField } from './components/GenNumberField';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { faDice, faShuffle, faArrowsRotate } from '@fortawesome/free-solid-svg-icons';
 
 interface Data {
   minNumber: number,
@@ -26,7 +28,14 @@ export function App() {
   return (
     <>
       <header>
-        <h1>Giv's Raffle</h1>
+        <h1>
+          <FontAwesomeIcon
+            icon={faDice}
+            style={{paddingBottom: "20px"}}
+          />
+          <br />
+          Giv's Raffle
+        </h1>
       </header>
       <form onSubmit={handleSubmit(handleSubmitValues)}>
       <p>Choose
@@ -64,6 +73,10 @@ export function App() {
           type="submit"
           style={{marginTop: "35px"}}
         >
+          <FontAwesomeIcon
+            icon={faShuffle}
+            style={{paddingRight: "7px"}}
+          />
           Draw!
         </Button>
         <Button
@@ -72,6 +85,10 @@ export function App() {
             reset();
           }}
         >
+          <FontAwesomeIcon
+            icon={faArrowsRotate}
+            style={{paddingRight: "7px"}}
+          />
           Reset
         </Button>
       </form>
