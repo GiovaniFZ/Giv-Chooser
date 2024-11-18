@@ -4,19 +4,27 @@ import { Button } from './components/Button';
 import { Input, InputField } from './components/Input';
 import { useForm } from 'react-hook-form';
 import { GenNumberField } from './components/GenNumberField';
-
-interface Data {
-  minNumber: number,
-  maxNumber: number,
-  quantity: number,
-}
+import { z } from 'zod'
 
 export function App() {
+
+  const genNumberSchema = z.object({
+    maxNumber: z.number(),
+    minNumber: z.number(),
+    quantity: z.number(),
+  }).refine((data) => data.maxNumber > data.minNumber, {
+    message: "maxNumber should be greater!",
+    path: ["maxNumber"]
+  })
+
+  type GenNumber = z.infer<typeof genNumberSchema>
+
   const [showNumber, setShowNumber] = useState(false);
   const [generatedNumber, setGeneratedNumber] = useState(0);
-  const { register, handleSubmit, reset } = useForm<Data>();
+  const { register, handleSubmit, reset } = useForm<GenNumber>();
 
-  const handleSubmitValues = (data: Data) => {
+  const handleSubmitValues = (data: GenNumber) => {
+    //const parser = genNumberSchema.safeParse(data);
     const {maxNumber, minNumber} = data;
     const number = Math.floor(Math.random() * (maxNumber + 1 - minNumber) + minNumber);
     setGeneratedNumber(number);
