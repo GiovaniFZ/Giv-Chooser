@@ -29,8 +29,17 @@ export function App() {
         <h1>Giv's Raffle</h1>
       </header>
       <form onSubmit={handleSubmit(handleSubmitValues)}>
-      <p>Choose <Input type='number' {...register('quantity', { valueAsNumber: true })} /> number(s) between:</p>
-        <InputField>
+      <p>Choose
+        <Input
+          type='number'
+          {...register('quantity', { valueAsNumber: true })}
+          style={{marginLeft: "15px", marginRight: "15px"}}
+        />
+        number(s) between:
+      </p>
+        <InputField
+          style={{marginTop: "25px"}}
+        >
           <Input
             type="number"
             placeholder="Min"
@@ -51,18 +60,21 @@ export function App() {
             <GenNumberField>{generatedNumber}</GenNumberField>
           </div>
         )}
-        <Button type="submit">
+        <Button
+          type="submit"
+          style={{marginTop: "35px"}}
+        >
           Draw!
         </Button>
+        <Button
+          onClick={() => {
+            setShowNumber(false);
+            reset();
+          }}
+        >
+          Reset
+        </Button>
       </form>
-      <Button
-        onClick={() => {
-          setShowNumber(false);
-          reset();
-        }}
-      >
-        Reset
-      </Button>
     </>
   );
 }
