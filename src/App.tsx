@@ -1,96 +1,68 @@
-import { ChangeEvent, SetStateAction, useState} from 'react';
+import { useState } from 'react';
 import './App.css';
-import {Button} from './components/Button/Button';
-import {Input, InputField} from './components/Input/Input';
+import { Button } from './components/Button';
+import { Input, InputField } from './components/Input';
+import { useForm } from 'react-hook-form';
+import { GenNumberField } from './components/GenNumberField';
+
+interface Data {
+  minNumber: number,
+  maxNumber: number,
+  quantity: number,
+}
 
 export function App() {
-    const [showNumber, setShowNumber] = useState(false);
-    const [minNumber, setMinNumber] = useState('');
-    const [maxNumber, setMaxNumber] = useState('');
-    const [error, setError] = useState('');
-    const [generatedNumber, setGeneratedNumber] = useState(null);
+  const [showNumber, setShowNumber] = useState(false);
+  const [generatedNumber, setGeneratedNumber] = useState(0);
+  const { register, handleSubmit, reset } = useForm<Data>();
 
-    function validateInputs() {
-        const min = parseInt(minNumber);
-        const max = parseInt(maxNumber);
+  const handleSubmitValues = (data: Data) => {
+    const {maxNumber, minNumber} = data;
+    const number = Math.floor(Math.random() * (maxNumber + 1 - minNumber) + minNumber);
+    setGeneratedNumber(number);
+    setShowNumber(true);
+  }
 
-        if (isNaN(min) || isNaN(max)) {
-            setError('Please enter valid numbers');
-            return false;
-        }
-        if (min > max) {
-            setError("Min number can't be more than max number");
-            return false;
-        }
-        setError('');
-        return true;
-    }
-
-    function getGeneratedNumber() {
-        const min = parseInt(minNumber);
-        const max = parseInt(maxNumber);
-
-        return Math.floor(Math.random() * (max + 1 - min) + min);
-    }
-
-    function handleClick() {
-        if (validateInputs()) {
-            // @ts-ignore
-            setGeneratedNumber(getGeneratedNumber());
-            setShowNumber(true);
-        }
-    }
-
-    function handleInputChange(e: ChangeEvent<HTMLInputElement>, setter: { (value: SetStateAction<string>): void; (value: SetStateAction<string>): void; (arg0: any): void; }) {
-        setter(e.target.value);
-        setShowNumber(false);
-        setError('');
-    }
-
-    return (
-        <>
-            <header>
-                <h1>Giv's Raffle</h1>
-                <p>Choose a number between:</p>
-            </header>
-            <InputField>
-                <Input
-                    type="number"
-                    placeholder="Min number"
-                    onChange={(e) => handleInputChange(e, setMinNumber)}
-                    value={minNumber}
-                    aria-label="Minimum number"
-                />
-                <p>and</p>
-                <Input
-                    type="number"
-                    placeholder="Max number"
-                    onChange={(e) => handleInputChange(e, setMaxNumber)}
-                    value={maxNumber}
-                    aria-label="Maximum number"
-                />
-            </InputField>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
-            {showNumber && (
-                <div>
-                    <h2>Drawn number:</h2>
-                    <h1>{generatedNumber}</h1>
-                </div>
-            )}
-            <Button onClick={handleClick} disabled={!!error}>
-                Draw!
-            </Button>
-            <Button
-                onClick={() => {
-                    setMinNumber('');
-                    setMaxNumber('');
-                    setShowNumber(false);
-                    setError('');
-                    setGeneratedNumber(null);
-                }}
-            >
-                Reset
-            </Button>
-        </>
-    );
+  return (
+    <>
+      <header>
+        <h1>Giv's Raffle</h1>
+      </header>
+      <form onSubmit={handleSubmit(handleSubmitValues)}>
+      <p>Choose <Input type='number' {...register('quantity', { valueAsNumber: true })} /> number(s) between:</p>
+        <InputField>
+          <Input
+            type="number"
+            placeholder="Min"
+            aria-label="Minimum number"
+            {...register('minNumber', { valueAsNumber: true })}
+          />
+          <p>and</p>
+          <Input
+            type="number"
+            placeholder="Max"
+            aria-label="Maximum number"
+            {...register('maxNumber', { valueAsNumber: true })}
+          />
+        </InputField>
+        {showNumber && (
+          <div>
+            <h2>Drawn number:</h2>
+            <GenNumberField>{generatedNumber}</GenNumberField>
+          </div>
+        )}
+        <Button type="submit">
+          Draw!
+        </Button>
+      </form>
+      <Button
+        onClick={() => {
+          setShowNumber(false);
+          reset();
+        }}
+      >
+        Reset
+      </Button>
+    </>
+  );
 }
