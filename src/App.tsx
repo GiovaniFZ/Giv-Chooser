@@ -5,8 +5,9 @@ import { Input, InputField } from './components/Input';
 import { useForm } from 'react-hook-form';
 import { GenNumberField } from './components/GenNumberField';
 import { z } from 'zod'
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDice, faShuffle, faArrowsRotate } from '@fortawesome/free-solid-svg-icons';
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export function App() {
 
@@ -16,17 +17,17 @@ export function App() {
     quantity: z.number(),
   }).refine((data) => data.maxNumber > data.minNumber, {
     message: "maxNumber should be greater!",
-    path: ["maxNumber"]
   })
 
   type GenNumber = z.infer<typeof genNumberSchema>
 
   const [showNumber, setShowNumber] = useState(false);
   const [generatedNumber, setGeneratedNumber] = useState(0);
-  const { register, handleSubmit, reset } = useForm<GenNumber>();
+  const { register, handleSubmit, reset } = useForm<GenNumber>({
+    resolver: zodResolver(genNumberSchema),
+  });
 
   const handleSubmitValues = (data: GenNumber) => {
-    //const parser = genNumberSchema.safeParse(data);
     const {maxNumber, minNumber} = data;
     const number = Math.floor(Math.random() * (maxNumber + 1 - minNumber) + minNumber);
     setGeneratedNumber(number);
