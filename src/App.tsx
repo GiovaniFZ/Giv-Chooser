@@ -43,7 +43,7 @@ export function App() {
             style={{paddingBottom: "20px"}}
           />
           <br />
-          Giv's Raffle
+          Giv's Shuffler
         </h1>
       </header>
       <form onSubmit={handleSubmit(handleSubmitValues)}>

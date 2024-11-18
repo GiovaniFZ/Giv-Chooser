@@ -12,7 +12,7 @@ export function HeaderComponent(){
           icon={faDice}
           style={{paddingRight: "7px"}}
         />
-        Giv's Raffle
+        Giv's Shuffler
       </a>
     </Header>
     )
