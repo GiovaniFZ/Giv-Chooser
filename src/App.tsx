@@ -5,6 +5,8 @@ import { Input, InputField } from './components/Input';
 import { useForm } from 'react-hook-form';
 import { GenNumberField } from './components/GenNumberField';
 import { z } from 'zod'
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { faDice, faShuffle, faArrowsRotate } from '@fortawesome/free-solid-svg-icons';
 
 export function App() {
 
@@ -34,11 +36,27 @@ export function App() {
   return (
     <>
       <header>
-        <h1>Giv's Raffle</h1>
+        <h1>
+          <FontAwesomeIcon
+            icon={faDice}
+            style={{paddingBottom: "20px"}}
+          />
+          <br />
+          Giv's Raffle
+        </h1>
       </header>
       <form onSubmit={handleSubmit(handleSubmitValues)}>
-      <p>Choose <Input type='number' {...register('quantity', { valueAsNumber: true })} /> number(s) between:</p>
-        <InputField>
+      <p>Choose
+        <Input
+          type='number'
+          {...register('quantity', { valueAsNumber: true })}
+          style={{marginLeft: "15px", marginRight: "15px"}}
+        />
+        number(s) between:
+      </p>
+        <InputField
+          style={{marginTop: "25px"}}
+        >
           <Input
             type="number"
             placeholder="Min"
@@ -59,18 +77,29 @@ export function App() {
             <GenNumberField>{generatedNumber}</GenNumberField>
           </div>
         )}
-        <Button type="submit">
+        <Button
+          type="submit"
+          style={{marginTop: "35px"}}
+        >
+          <FontAwesomeIcon
+            icon={faShuffle}
+            style={{paddingRight: "7px"}}
+          />
           Draw!
         </Button>
+        <Button
+          onClick={() => {
+            setShowNumber(false);
+            reset();
+          }}
+        >
+          <FontAwesomeIcon
+            icon={faArrowsRotate}
+            style={{paddingRight: "7px"}}
+          />
+          Reset
+        </Button>
       </form>
-      <Button
-        onClick={() => {
-          setShowNumber(false);
-          reset();
-        }}
-      >
-        Reset
-      </Button>
     </>
   );
 }
