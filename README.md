@@ -1,50 +1,28 @@
-# React + TypeScript + Vite
+# Giv's Shuffler
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- Hey, this is my main project, the Giv's Shuffler!
+- Basically what is does is sort n numbers in a range, according with the count that user choose.
+- In the future, I want to sort other things like words too!
 
-Currently, two official plugins are available:
+## Technologies
+- React
+- Vite
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## API
+This project is linked to an API available at https://github.com/GiovaniFZ/randomnumberapi-go.
+You should run the API before executing this project! Read the README to know how to do it.
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## How to run?
+First, make sure you have node installed by typing the command: 
 ```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+node -v
 ```
+Then, install the dependencies: 
+```
+npm install
+```
+Then, to run the project: 
+```
+npm run dev
+```
+Then, it will be available at localhost. Btw, any contributions will be welcome, thank you!
