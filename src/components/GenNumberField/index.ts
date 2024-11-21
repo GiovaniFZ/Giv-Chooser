@@ -5,10 +5,13 @@ export const GenNumberField = styled.h1`
     background-color: ${props => props.theme.white};
     width: fit-content;
     padding: 0.5rem;
-    margin: auto;
     border-radius: 1rem;
     text-align: center;
     justify-content: center;
     align-items: center;
+    margin: auto;
+    margin-top: 1rem;
     color: #000;
+    gap: 1rem;
+    
 `

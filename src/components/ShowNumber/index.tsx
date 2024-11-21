@@ -15,11 +15,17 @@ const paramsNumberSchema = z.object({
 
 export function ShowNumber({max, min, count}: ParamsNumber) {
     const { data: genNumbers } = useQuery({
-        queryKey: ['gen_number'],
+        queryKey: ['gen_number', count, max, min],
         queryFn: () => GetNumbers({max, min, count})
     })
 
     return (
-        <GenNumberField>{genNumbers}</GenNumberField>
-    )
+      genNumbers ? (
+        Array.from({ length: count }).map((_, i) => (
+          <GenNumberField key={i}>{genNumbers[i]}</GenNumberField>
+        ))
+      ) : (
+        <h1>Carregando</h1>
+      )
+    );
 }
