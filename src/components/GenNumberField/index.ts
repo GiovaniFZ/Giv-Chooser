@@ -1,17 +1,26 @@
 import styled from "styled-components";
 
 export const GenNumberField = styled.h1`
-    display: flex;
     background-color: ${props => props.theme.white};
-    width: fit-content;
-    padding: 0.5rem;
+    padding: 1rem;
     border-radius: 1rem;
-    text-align: center;
+    color: #000;
+    margin: auto;
+`
+
+export const NumbersContainer = styled.div`
+    display: grid;
+    grid-template-columns: repeat(10, auto);
     justify-content: center;
     align-items: center;
-    margin: auto;
-    margin-top: 1rem;
-    color: #000;
     gap: 1rem;
-    
+    @media (max-width: 1100px){
+        grid-template-columns: repeat(5, auto);
+    }
+    @media (max-width: 560px){
+        grid-template-columns: repeat(3, auto);
+    }
+    @media (max-width: 330px){
+        grid-template-columns: repeat(1, auto);
+    }
 `

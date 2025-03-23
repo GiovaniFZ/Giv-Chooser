@@ -22,8 +22,8 @@ export function App() {
   type ParamsNumber = z.infer<typeof paramsNumberSchema>
 
   const defaultFormState = {
-    min: 0, 
-    max: 0, 
+    min: 0,
+    max: 0,
     count: 0
   }
 
@@ -34,8 +34,8 @@ export function App() {
   });
 
   const handleSubmitValues = (data: ParamsNumber) => {
-    const {min, max, count} = data;
-    setFormState({min, max, count})
+    const { min, max, count } = data;
+    setFormState({ min, max, count })
     setShowNumber(true);
   }
 
@@ -60,9 +60,7 @@ export function App() {
           />
           number(s) between:
         </p>
-        <InputField
-          style={{ marginTop: "25px" }}
-        >
+        <InputField>
           <Input
             type="number"
             placeholder="Min"
@@ -78,12 +76,9 @@ export function App() {
           />
         </InputField>
         {showNumber && (
-          <ShowNumber max={formState.max} min={formState.min} count={formState.count}  />
+          <ShowNumber max={formState.max} min={formState.min} count={formState.count} />
         )}
-        <Button
-          type="submit"
-          style={{ marginTop: "35px" }}
-        >
+        <Button type="submit">
           <FontAwesomeIcon
             icon={faShuffle}
             style={{ paddingRight: "7px" }}
