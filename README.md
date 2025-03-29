@@ -9,15 +9,11 @@
 - Vite
 
 ## API
-This project is linked to an API available at https://github.com/GiovaniFZ/randomnumberapi-go.
-You should run the API before executing this project! Read the README to know how to do it.
+This project is linked to an API (see the source code [here](https://github.com/GiovaniFZ/givs_shuffler_api))
+If you wish to run this project locally, you'll need to run the API first, check the API README to know how to do it.
 
-## How to run?
-First, make sure you have node installed by typing the command: 
-```
-node -v
-```
-Then, install the dependencies: 
+## Running
+First, make sure you're running the API, then, open the FE folder and install the dependencies: 
 ```
 npm install
 ```
