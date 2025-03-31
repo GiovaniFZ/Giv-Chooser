@@ -17,6 +17,10 @@ color: #000;
 }
 `
 
+export const InputWord = styled(Input)`
+width: 50%;
+`
+
 export const InputField = styled.div`
   display: flex;
   gap: 1rem;
