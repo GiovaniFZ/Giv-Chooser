@@ -5,7 +5,6 @@ export const GenNumberField = styled.h1`
     padding: 1rem;
     border-radius: 1rem;
     color: #000;
-    margin: auto;
 `
 
 export const NumbersContainer = styled.div`
@@ -23,4 +22,14 @@ export const NumbersContainer = styled.div`
     @media (max-width: 330px){
         grid-template-columns: repeat(1, auto);
     }
+`
+
+export const SmallNumbersContainer = styled(NumbersContainer)`
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+`
+
+export const GenNumberFieldMargin = styled(GenNumberField)`
+    margin: auto;
 `
