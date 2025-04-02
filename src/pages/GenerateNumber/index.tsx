@@ -20,7 +20,8 @@ export function GenerateNumber() {
   type ParamsNumber = z.infer<typeof paramsNumberSchema>
 
   const [showNumber, setShowNumber] = useState(false);
-  const { register, handleSubmit, reset, watch } = useForm<ParamsNumber>({
+  const [formValues, setFormValues] = useState<ParamsNumber | null>(null);
+  const { register, handleSubmit, reset } = useForm<ParamsNumber>({
     defaultValues: {
       max: 0,
       min: 0,
@@ -29,9 +30,8 @@ export function GenerateNumber() {
     resolver: zodResolver(paramsNumberSchema),
   });
 
-  const { max, min, count } = watch();
-
-  const handleSubmitValues = () => {
+  const handleSubmitValues = (data: ParamsNumber) => {
+    setFormValues(data);
     setShowNumber(true);
   }
 
@@ -71,11 +71,11 @@ export function GenerateNumber() {
             {...register('max', { valueAsNumber: true })}
           />
         </InputField>
-        {showNumber && (
+        {showNumber && formValues && (
           <ShowNumber
-            max={max}
-            min={min}
-            count={count}
+            max={formValues.max}
+            min={formValues.min}
+            count={formValues.count}
           />
         )}
         <Button type="submit">
@@ -88,6 +88,7 @@ export function GenerateNumber() {
         <Button
           onClick={() => {
             setShowNumber(false);
+            setFormValues(null);
             reset();
           }}
         >
