@@ -31,7 +31,7 @@ export function ShowNumber({ max, min, count }: ParamsNumber) {
     )
   }
 
-  if (genNumbers.length < 10) {
+  if (genNumbers.length < 6) {
     return (
       <SmallNumbersContainer>
         {Array.from({ length: count }).map((_, i) => (
@@ -42,12 +42,10 @@ export function ShowNumber({ max, min, count }: ParamsNumber) {
   }
 
   return (
-    genNumbers && (
       <NumbersContainer>
         {Array.from({ length: count }).map((_, i) => (
           <GenNumberFieldMargin key={i}>{genNumbers[i]}</GenNumberFieldMargin>
         ))}
       </NumbersContainer>
-    )
   )
 }
