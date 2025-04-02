@@ -12,3 +12,17 @@ export const Header = styled.header`
         margin-left: 1rem;
     }
 `
+
+export const HeaderLinks = styled.div`
+    display: flex;
+    margin-left: auto;
+    padding-right: 1rem;
+    a{
+        color: white;
+        text-decoration: none;
+        transition: color 0.3s ease;
+        &:hover{
+            color: orange;
+        }
+    }
+`
