@@ -6,19 +6,21 @@ import { Button } from "../../components/Button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { ShowError } from "../../components/Error";
 
 export function GenerateNumber() {
   const navigate = useNavigate()
   const paramsNumberSchema = z.object({
-    max: z.number(),
-    min: z.number(),
-    count: z.number(),
+    max: z.number().min(0, { message: "max should be greater than 0!" }),
+    min: z.number().min(0, { message: "min should be greater than 0!" }),
+    count: z.number().min(1, { message: "count should be greater than 0!" }),
   }).refine((data) => data.max > data.min, {
-    message: "max should be greater!",
+    message: "max should be greater than min!",
+    path: ["max"]
   })
 
   type ParamsNumber = z.infer<typeof paramsNumberSchema>
-  const { register, handleSubmit, reset } = useForm<ParamsNumber>({
+  const { register, handleSubmit, reset, formState: { errors } } = useForm<ParamsNumber>({
     defaultValues: {
       max: 0,
       min: 0,
@@ -52,6 +54,7 @@ export function GenerateNumber() {
           />
           number(s) between:
         </p>
+        {errors.count && <ShowError error={errors.count.message} />}
         <InputField>
           <Input
             type="number"
@@ -67,6 +70,8 @@ export function GenerateNumber() {
             {...register('max', { valueAsNumber: true })}
           />
         </InputField>
+        {errors.min && <ShowError error={errors.min.message} />}
+        {errors.max && <ShowError error={errors.max.message} />}
         <Button type="submit">
           <FontAwesomeIcon
             icon={faShuffle}

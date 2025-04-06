@@ -2,6 +2,7 @@ import { Header, HeaderLinks } from "./header"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDice } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
+
 export function HeaderComponent() {
   return (
     <Header>
