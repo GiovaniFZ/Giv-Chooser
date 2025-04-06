@@ -39,12 +39,14 @@ export function GenerateWord() {
                     style={{ paddingBottom: "20px" }}
                 />
                 <br />
-                Sort Words</h1>
-            <h2>How many words do you want to shuffle?</h2>
-            <Input type="number" {...register('count', {
-                valueAsNumber: true
-            })}>
-            </Input>
+                Words Chooser</h1>
+            <h2>Choose 1 word among these
+                <Input style={{ margin: "10px" }} type="number" {...register('count', {
+                    valueAsNumber: true
+                })}>
+                </Input>
+                word(s):
+            </h2>
             {errors.count && <ShowError error={errors.count.message} />}
             <WordsFieldsContainer>
                 {Array.from({ length: count }).map((_, index) => (

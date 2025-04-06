@@ -60,7 +60,7 @@ export function ShowWords({ count, words }: ParamsWords) {
           navigate("/word");
         }}
       >
-        Sort again!
+        Choose again!
       </Button>
     </div>
   )

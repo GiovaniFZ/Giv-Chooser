@@ -1,6 +1,6 @@
-# Giv's Shuffler
+# Giv's Chooser
 
-- Hey, this is my main project, the Giv's Shuffler!
+- Hey, this is my main project, the Giv's Chooser!
 - Basically what is does is sort n numbers in a range, according with the count that user choose.
 - In the future, I want to sort other things like words too!
 

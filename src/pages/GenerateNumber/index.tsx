@@ -42,7 +42,7 @@ export function GenerateNumber() {
             style={{ paddingBottom: "20px" }}
           />
           <br />
-          Sort Numbers
+          Numbers Chooser
         </h1>
       </header>
       <form onSubmit={handleSubmit(handleSubmitValues)}>

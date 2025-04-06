@@ -14,7 +14,7 @@ export function HeaderComponent() {
           icon={faDice} 
           style={{ paddingRight: "7px" }}
         />
-        Giv's Shuffler
+        Giv's Chooser
       </a>
       <HeaderLinks>
         <Link to="/">Numbers</Link>

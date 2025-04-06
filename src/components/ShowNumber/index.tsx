@@ -54,7 +54,7 @@ export function ShowNumber({ max, min, count }: ParamsNumber) {
             navigate("/");
           }}
         >
-          Sort again!
+          Choose again!
         </Button>
       </>
     )
@@ -72,7 +72,7 @@ export function ShowNumber({ max, min, count }: ParamsNumber) {
           navigate("/");
         }}
       >
-        Sort again!
+        Choose again!
       </Button>
     </>
   )
