@@ -7,16 +7,19 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDice, faShuffle } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
-
+import { ShowError } from "../../components/Error";
 export function GenerateWord() {
     const navigate = useNavigate()
     const paramsWordSchema = z.object({
-        count: z.number(),
+        count: z.number().min(1, { message: "count should be greater than 0!" }),
         words: z.array(z.string())
+    }).refine((data) => data.words.length >= data.count, {
+        message: "Number of words should be greater than or equal to the number of words",
+        path: ["words"]
     })
 
     type ParamWords = z.infer<typeof paramsWordSchema>
-    const { register, handleSubmit, control } = useForm<ParamWords>({
+    const { register, handleSubmit, control, formState: { errors } } = useForm<ParamWords>({
         resolver: zodResolver(paramsWordSchema),
     });
     const count = useWatch({
@@ -25,6 +28,7 @@ export function GenerateWord() {
         defaultValue: 0,
     });
     function handleWordsValues(data: ParamWords) {
+        console.log(data)
         navigate("/result", { state: data })
     }
 
@@ -39,14 +43,16 @@ export function GenerateWord() {
                 Sort Words</h1>
             <h2>How many words do you want to shuffle?</h2>
             <Input type="number" {...register('count', {
-                validate: (value) => value >= 0 || "Number can't be negative",
                 valueAsNumber: true
-            })}></Input>
+            })}>
+            </Input>
+            {errors.count && <ShowError error={errors.count.message} />}
             <WordsFieldsContainer>
                 {Array.from({ length: count }).map((_, index) => (
                     <InputWord
+                        required
                         key={index}
-                        placeholder="type any word"
+                        placeholder="Type any word"
                         {...register(`words.${index}`)}
                     />
                 ))}
