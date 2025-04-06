@@ -2,13 +2,13 @@ import { faArrowsRotate, faDice, faShuffle } from "@fortawesome/free-solid-svg-i
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { z } from "zod";
 import { Input, InputField } from "../../components/Input";
-import { ShowNumber } from "../../components/ShowNumber";
 import { Button } from "../../components/Button";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 export function GenerateNumber() {
+  const navigate = useNavigate()
   const paramsNumberSchema = z.object({
     max: z.number(),
     min: z.number(),
@@ -18,9 +18,6 @@ export function GenerateNumber() {
   })
 
   type ParamsNumber = z.infer<typeof paramsNumberSchema>
-
-  const [showNumber, setShowNumber] = useState(false);
-  const [formValues, setFormValues] = useState<ParamsNumber | null>(null);
   const { register, handleSubmit, reset } = useForm<ParamsNumber>({
     defaultValues: {
       max: 0,
@@ -30,9 +27,8 @@ export function GenerateNumber() {
     resolver: zodResolver(paramsNumberSchema),
   });
 
-  const handleSubmitValues = (data: ParamsNumber) => {
-    setFormValues(data);
-    setShowNumber(true);
+  const handleSubmitValues = async (data: ParamsNumber) => {
+    navigate("/result", { state: data });
   }
 
   return (
@@ -44,7 +40,7 @@ export function GenerateNumber() {
             style={{ paddingBottom: "20px" }}
           />
           <br />
-          Giv's Shuffler
+          Sort Numbers
         </h1>
       </header>
       <form onSubmit={handleSubmit(handleSubmitValues)}>
@@ -71,13 +67,6 @@ export function GenerateNumber() {
             {...register('max', { valueAsNumber: true })}
           />
         </InputField>
-        {showNumber && formValues && (
-          <ShowNumber
-            max={formValues.max}
-            min={formValues.min}
-            count={formValues.count}
-          />
-        )}
         <Button type="submit">
           <FontAwesomeIcon
             icon={faShuffle}
@@ -87,8 +76,6 @@ export function GenerateNumber() {
         </Button>
         <Button
           onClick={() => {
-            setShowNumber(false);
-            setFormValues(null);
             reset();
           }}
         >

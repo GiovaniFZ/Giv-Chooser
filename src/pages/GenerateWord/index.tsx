@@ -1,19 +1,20 @@
-import { useState } from "react";
 import { Button } from "../../components/Button";
 import { Input, InputWord } from "../../components/Input";
 import { WordsFieldsContainer } from "./styles";
 import { useForm, useWatch } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ShowWords } from "../../components/ShowWords";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDice, faShuffle } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
 export function GenerateWord() {
+    const navigate = useNavigate()
     const paramsWordSchema = z.object({
         count: z.number(),
         words: z.array(z.string())
     })
 
-    const [showWords, setShowWords] = useState(false)
     type ParamWords = z.infer<typeof paramsWordSchema>
     const { register, handleSubmit, control } = useForm<ParamWords>({
         resolver: zodResolver(paramsWordSchema),
@@ -23,18 +24,19 @@ export function GenerateWord() {
         name: "count",
         defaultValue: 0,
     });
-    const words = useWatch({
-        control,
-        name: "words",
-        defaultValue: [],
-    });
-    function handleWordsValues() {
-        setShowWords(true)
+    function handleWordsValues(data: ParamWords) {
+        navigate("/result", { state: data })
     }
 
     return (
         <form onSubmit={handleSubmit(handleWordsValues)}>
-            <h1>Sort Words</h1>
+            <h1>
+                <FontAwesomeIcon
+                    icon={faDice}
+                    style={{ paddingBottom: "20px" }}
+                />
+                <br />
+                Sort Words</h1>
             <h2>How many words do you want to shuffle?</h2>
             <Input type="number" {...register('count', {
                 validate: (value) => value >= 0 || "Number can't be negative",
@@ -49,10 +51,13 @@ export function GenerateWord() {
                     />
                 ))}
             </WordsFieldsContainer>
-            {showWords &&
-                <ShowWords count={count} words={words} />
-            }
-            <Button type="submit">Submit!</Button>
+            <Button type="submit">
+                <FontAwesomeIcon
+                    icon={faShuffle}
+                    style={{ paddingRight: "7px" }}
+                />
+                Draw!
+            </Button>
         </form>
     )
 }
