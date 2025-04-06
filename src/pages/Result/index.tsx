@@ -5,6 +5,7 @@ import { ShowWords } from "../../components/ShowWords";
 export function Result() {
     const location = useLocation();
     const data = location.state;
+    const isNumbers = !!data.max
 
     if (!data) {
         return (
@@ -14,12 +15,11 @@ export function Result() {
         );
     }
 
-    const isNumbers = !!data.max
 
     if (isNumbers) {
         return (
             <>
-                <h1>Results</h1>
+                <h1>The chosen numbers are:</h1>
                 <ShowNumber
                     max={data.max}
                     min={data.min}
@@ -31,7 +31,7 @@ export function Result() {
 
     return (
         <>
-            <h1>Results</h1>
+            <h1>The chosen words are:</h1>
             <ShowWords
                 words={data.words}
                 count={data.count}

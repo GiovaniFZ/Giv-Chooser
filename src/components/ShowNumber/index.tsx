@@ -2,6 +2,9 @@ import { useQuery } from "@tanstack/react-query"
 import { GetNumbers } from "../../api/getNumbers"
 import { z } from "zod"
 import { GenNumberField, GenNumberFieldMargin, NumbersContainer, SmallNumbersContainer } from "../GenNumberField"
+import { Button } from "../Button"
+import { useNavigate } from "react-router-dom"
+import { ShowErrorComponent } from "../Error"
 
 const paramsNumberSchema = z.object({
   max: z.number(),
@@ -14,7 +17,8 @@ const paramsNumberSchema = z.object({
 type ParamsNumber = z.infer<typeof paramsNumberSchema>
 
 export function ShowNumber({ max, min, count }: ParamsNumber) {
-  const { data: genNumbers, isLoading } = useQuery({
+  const navigate = useNavigate();
+  const { data: genNumbers, isLoading, error } = useQuery({
     queryKey: ['gen_number', count, max, min],
     queryFn: () => GetNumbers({ max, min, count })
   })
@@ -22,6 +26,12 @@ export function ShowNumber({ max, min, count }: ParamsNumber) {
   if (isLoading) {
     return (
       <h1>Loading...</h1>
+    )
+  }
+
+  if (error) {
+    return (
+      <ShowErrorComponent />
     )
   }
 
@@ -33,19 +43,37 @@ export function ShowNumber({ max, min, count }: ParamsNumber) {
 
   if (genNumbers.length < 6) {
     return (
-      <SmallNumbersContainer>
-        {Array.from({ length: count }).map((_, i) => (
-          <GenNumberField key={i}>{genNumbers[i]}</GenNumberField>
-        ))}
-      </SmallNumbersContainer>
+      <>
+        <SmallNumbersContainer>
+          {Array.from({ length: count }).map((_, i) => (
+            <GenNumberField key={i}>{genNumbers[i]}</GenNumberField>
+          ))}
+        </SmallNumbersContainer>
+        <Button
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          Sort again!
+        </Button>
+      </>
     )
   }
 
   return (
+    <>
       <NumbersContainer>
         {Array.from({ length: count }).map((_, i) => (
           <GenNumberFieldMargin key={i}>{genNumbers[i]}</GenNumberFieldMargin>
         ))}
       </NumbersContainer>
+      <Button
+        onClick={() => {
+          navigate("/");
+        }}
+      >
+        Sort again!
+      </Button>
+    </>
   )
 }
