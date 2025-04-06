@@ -28,7 +28,6 @@ export function GenerateWord() {
         defaultValue: 0,
     });
     function handleWordsValues(data: ParamWords) {
-        console.log(data)
         navigate("/result", { state: data })
     }
 

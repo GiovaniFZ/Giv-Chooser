@@ -3,6 +3,7 @@ import { z } from "zod"
 import { GetWords } from "../../api/getWords"
 import { Button } from "../Button"
 import { useNavigate } from "react-router-dom"
+import { GenWordsField } from "./styles"
 const paramsWordSchema = z.object({
   count: z.number(),
   words: z.array(z.string())
@@ -44,11 +45,16 @@ export function ShowWords({ count, words }: ParamsWords) {
     )
   }
 
+  const hasMoreThanOneCount = false // Feature to be implemented
+
   return (
     <div>
-      {Array.from({ length: count }).map((_, i) => (
-        <h1 key={i}>{genWords[i]}</h1>
+      {hasMoreThanOneCount && Array.from({ length: count }).map((_, i) => (
+        <GenWordsField key={i}>{genWords[i]}</GenWordsField>
       ))}
+      {!hasMoreThanOneCount && (
+        <GenWordsField>{genWords[0]}</GenWordsField>
+      )}
       <Button
         onClick={() => {
           navigate("/word");

@@ -5,8 +5,6 @@ type ErrorProps = {
     error: string | undefined
 }
 
-const navigate = useNavigate();
-
 export function ShowError({ error }: ErrorProps) {
     return (
         <p style={{ color: "red" }}>Error: {error}</p>
@@ -14,6 +12,7 @@ export function ShowError({ error }: ErrorProps) {
 }
 
 export function ShowErrorComponent() {
+    const navigate = useNavigate();
     return (
         <div>
             <h1 style={{ color: "red" }}>An error occurred! Please, Try again.</h1>
