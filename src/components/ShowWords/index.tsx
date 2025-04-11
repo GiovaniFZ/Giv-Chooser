@@ -46,16 +46,11 @@ export function ShowWords({ count, words }: ParamsWords) {
     )
   }
 
-  const hasMoreThanOneCount = false // Feature to be implemented
-
   return (
     <div>
-      {hasMoreThanOneCount && Array.from({ length: count }).map((_, i) => (
+      {Array.from({ length: count }).map((_, i) => (
         <GenWordsField key={i}>{genWords[i]}</GenWordsField>
       ))}
-      {!hasMoreThanOneCount && (
-        <GenWordsField>{genWords[0]}</GenWordsField>
-      )}
       <Button
         onClick={() => {
           navigate("/word");

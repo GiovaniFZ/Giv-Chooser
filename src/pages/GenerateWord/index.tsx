@@ -1,13 +1,14 @@
 import { Button } from "../../components/Button";
 import { Input, InputWord } from "../../components/Input";
 import { WordsFieldsContainer } from "./styles";
-import { useForm, useWatch } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDice, faShuffle } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import { ShowError } from "../../components/Error";
+import { useState } from "react";
 export function GenerateWord() {
     const navigate = useNavigate()
     const paramsWordSchema = z.object({
@@ -19,14 +20,10 @@ export function GenerateWord() {
     })
 
     type ParamWords = z.infer<typeof paramsWordSchema>
-    const { register, handleSubmit, control, formState: { errors } } = useForm<ParamWords>({
+    const { register, handleSubmit, formState: { errors } } = useForm<ParamWords>({
         resolver: zodResolver(paramsWordSchema),
     });
-    const count = useWatch({
-        control,
-        name: "count",
-        defaultValue: 0,
-    });
+    const [numberOfWords, setNumberOfWords] = useState(0)
     function handleWordsValues(data: ParamWords) {
         navigate("/result", { state: data })
     }
@@ -40,16 +37,17 @@ export function GenerateWord() {
                 />
                 <br />
                 Words Chooser</h1>
-            <h2>Choose 1 word among these
+            <h2>Choose
                 <Input style={{ margin: "10px" }} type="number" {...register('count', {
                     valueAsNumber: true
-                })}>
-                </Input>
+                })} />
+                word(s) among these
+                <Input style={{ margin: "10px" }} type="number" onChange={(e) => setNumberOfWords(Number(e.target.value))} />
                 word(s):
             </h2>
             {errors.count && <ShowError error={errors.count.message} />}
             <WordsFieldsContainer>
-                {Array.from({ length: count }).map((_, index) => (
+                {Array.from({ length: numberOfWords }).map((_, index) => (
                     <InputWord
                         required
                         key={index}
