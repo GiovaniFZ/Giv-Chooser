@@ -63,7 +63,6 @@ export function HeaderComponent() {
                 key={item.href} 
                 to={item.href}
                 style={{ 
-                  color: isActive(item.href) ? 'orange' : 'white',
                   fontWeight: isActive(item.href) ? 'bold' : 'normal'
                 }}
               >
