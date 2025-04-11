@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Header = styled.header`
-    background-color: ${props => props.theme["green-500"]};
+    background-color: ${props => props.theme["green-550"]};
     display: flex;
     width: 100%;
     height: 3rem;
