@@ -1,7 +1,7 @@
 import { Drawer, DrawerContainer, DrawerItem, Header, HeaderLinks } from "./header"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDice } from '@fortawesome/free-solid-svg-icons';
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 
 interface NavItem {
@@ -19,6 +19,7 @@ const navItems: NavItem[] = [
 export function HeaderComponent() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const location = useLocation();
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -32,6 +33,10 @@ export function HeaderComponent() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  const isActive = (path: string) => {
+    return location.pathname === path;
+  };
 
   return (
     <>
@@ -54,7 +59,16 @@ export function HeaderComponent() {
                 {item.label}
               </a>
             ) : (
-              <Link key={item.href} to={item.href}>{item.label}</Link>
+              <Link 
+                key={item.href} 
+                to={item.href}
+                style={{ 
+                  color: isActive(item.href) ? 'orange' : 'white',
+                  fontWeight: isActive(item.href) ? 'bold' : 'normal'
+                }}
+              >
+                {item.label}
+              </Link>
             )
           ))}
         </HeaderLinks>
@@ -67,6 +81,10 @@ export function HeaderComponent() {
               href={item.href} 
               target={item.isExternal ? "_blank" : undefined}
               rel={item.isExternal ? "noopener noreferrer" : undefined}
+              style={{ 
+                color: isActive(item.href) ? 'orange' : 'white',
+                fontWeight: isActive(item.href) ? 'bold' : 'normal'
+              }}
             >
               {item.label}
             </DrawerItem>
