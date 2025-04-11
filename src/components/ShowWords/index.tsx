@@ -12,10 +12,11 @@ const paramsWordSchema = z.object({
 type ParamsWords = z.infer<typeof paramsWordSchema>
 
 export function ShowWords({ count, words }: ParamsWords) {
+  const filteredWords = words.filter(word => word.trim() !== "")
   const navigate = useNavigate();
   const { data: genWords, isLoading, error } = useQuery({
-    queryKey: ['gen_word', count, words],
-    queryFn: () => GetWords({ count, words })
+    queryKey: ['gen_word', count, filteredWords],
+    queryFn: () => GetWords({ count, words: filteredWords })
   })
 
   if (isLoading) {
