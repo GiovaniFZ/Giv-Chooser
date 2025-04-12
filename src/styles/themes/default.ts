@@ -1,7 +1,8 @@
 export const defaultTheme = {
-  'text-color': '#000',
+  'text-color': '#fff',
   'white-color': '#fff',
   'green-100': '#C7FA00',
+  'field-color': '#fff',
   'green-200': '#43753E',
   'green-300': '#3E7560',
   'green-500': '#3E754D',
