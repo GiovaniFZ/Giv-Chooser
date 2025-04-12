@@ -10,7 +10,7 @@ export const Button = styled.button`
   background-color: ${(props) => props.theme['orange-500']};
   cursor: pointer;
   margin: 1rem;
-  color: ${(props) => props.theme.white};
+  color: ${(props) => props.theme['text-color']};
   transition: background-color 0.25s;
   &:hover {
     background-color: ${(props) => props.theme.orange};

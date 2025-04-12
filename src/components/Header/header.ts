@@ -15,14 +15,14 @@ export const Header = styled.header`
 
 export const Drawer = styled.button`
   all: unset;
-  color: white;
+  color: ${(props) => props.theme['text-color']};
   cursor: pointer;
   transition: color 0.3s;
   display: none;
   margin-left: 1rem;
 
   &:hover {
-    color: 'white';
+    color: ${(props) => props.theme['text-color']};
   }
   &::after {
     content: '☰';
@@ -58,7 +58,7 @@ export const DrawerItem = styled.a`
   text-decoration: none;
   padding: 1rem;
   display: block;
-  color: white;
+  color: ${(props) => props.theme['text-color']};
   cursor: pointer;
   animation-name: slideIn;
   animation-duration: 0.5s;
@@ -80,7 +80,7 @@ export const HeaderLinks = styled.div`
   margin-left: auto;
   padding-right: 1rem;
   a {
-    color: white;
+    color: ${(props) => props.theme['text-color']};
     text-decoration: none;
     transition: color 0.3s ease;
     &:hover {

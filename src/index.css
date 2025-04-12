@@ -4,7 +4,7 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: 'white';
+  color: '${(props) => props.theme['text-color']};';
   background-color: ${props => props.theme["gray-900"]};
   
   text-rendering: optimizeLegibility;
@@ -20,6 +20,6 @@ h1 {
 @media (prefers-color-scheme: light) {
   :root {
     color: 'black';
-    background-color: 'white';
+    background-color: '${(props) => props.theme['text-color']};';
   }
 }

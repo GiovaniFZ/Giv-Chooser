@@ -7,7 +7,7 @@ export const Input = styled.input`
   padding: 1rem;
   outline: none;
   border: none;
-  background-color: ${(props) => props.theme.white};
+  background-color: ${(props) => props.theme['text-color']};
   color: #000;
   &:focus {
     outline: 5px solid ${(props) => props.theme['green-300']};
