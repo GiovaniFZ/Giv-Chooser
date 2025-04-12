@@ -10,20 +10,20 @@ export const Header = styled.header`
   align-items: center;
   a {
     margin-left: 1rem;
+    @media (max-width: 640px) {
+      margin: 0 auto;
+    }
   }
 `;
 
 export const Drawer = styled.button`
   all: unset;
-  color: ${(props) => props.theme['text-color']};
+  color: ${(props) => props.theme['white-color']};
   cursor: pointer;
   transition: color 0.3s;
   display: none;
   margin-left: 1rem;
 
-  &:hover {
-    color: ${(props) => props.theme['text-color']};
-  }
   &::after {
     content: '☰';
   }
@@ -80,14 +80,14 @@ export const HeaderLinks = styled.div`
   margin-left: auto;
   padding-right: 1rem;
   a {
-    color: ${(props) => props.theme['text-color']};
+    color: ${(props) => props.theme['white-color']};
     text-decoration: none;
     transition: color 0.3s ease;
     &:hover {
       color: orange;
     }
   }
-  @media (max-width: 490px) {
+  @media (max-width: 640px) {
     display: none;
   }
 `;

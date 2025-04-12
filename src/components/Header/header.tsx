@@ -76,7 +76,6 @@ export function HeaderComponent() {
               target={item.isExternal ? '_blank' : undefined}
               rel={item.isExternal ? 'noopener noreferrer' : undefined}
               style={{
-                color: isActive(item.href) ? 'orange' : 'white',
                 fontWeight: isActive(item.href) ? 'bold' : 'normal',
               }}
             >

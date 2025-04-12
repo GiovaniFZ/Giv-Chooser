@@ -4,7 +4,7 @@
   font-weight: 400;
 
   color-scheme: dark;
-  color: '${(props) => props.theme['text-color']}';
+  color: '${(props) => props.theme['white-color']}';
   background-color: ${props => props.theme["gray-900"]};
   
   text-rendering: optimizeLegibility;

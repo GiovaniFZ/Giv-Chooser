@@ -1,5 +1,6 @@
 export const lightTheme = {
-  'text-color': '#fff',
+  'text-color': '#000',
+  'white-color': '#fff',
   'field-color': '#E0E0E0',
   'gray-900': '#f5f5f5',
   'green-100': '#C7FA00',
