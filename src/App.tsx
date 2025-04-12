@@ -4,6 +4,7 @@ import { GenerateNumber } from './pages/GenerateNumber';
 import { GenerateWord } from './pages/GenerateWord';
 import { HeaderComponent } from './components/Header/header.tsx';
 import { Result } from './pages/Result/index.tsx';
+import { About } from './pages/About/index.tsx';
 
 export function App() {
   return (
@@ -13,6 +14,7 @@ export function App() {
         <Route index element={<GenerateNumber />} />
         <Route path="word" element={<GenerateWord />} />
         <Route path="result" element={<Result />} />
+        <Route path="about" element={<About />} />
       </Routes>
     </BrowserRouter>
   );

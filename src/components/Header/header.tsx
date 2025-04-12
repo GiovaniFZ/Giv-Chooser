@@ -13,6 +13,7 @@ interface NavItem {
 const navItems: NavItem[] = [
   { label: 'Numbers', href: '/' },
   { label: 'Words', href: '/word' },
+  { label: 'About', href: '/about' },
   { label: 'Main website', href: 'https://givfnz.com', isExternal: true },
 ];
 
