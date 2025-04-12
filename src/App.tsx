@@ -11,9 +11,9 @@ export function App() {
       <HeaderComponent />
       <Routes>
         <Route index element={<GenerateNumber />} />
-        <Route path='word' element={<GenerateWord />} />
-        <Route path='result' element={<Result />} />
+        <Route path="word" element={<GenerateWord />} />
+        <Route path="result" element={<Result />} />
       </Routes>
     </BrowserRouter>
-  )
+  );
 }

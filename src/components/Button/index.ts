@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const Button = styled.button`
   border-radius: 8px;
@@ -7,12 +7,12 @@ export const Button = styled.button`
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: ${props => props.theme["orange-500"]};
+  background-color: ${(props) => props.theme['orange-500']};
   cursor: pointer;
   margin: 1rem;
-  color: ${props => props.theme.white};
+  color: ${(props) => props.theme.white};
   transition: background-color 0.25s;
-  &:hover{
-    background-color: ${props => props.theme.orange};
+  &:hover {
+    background-color: ${(props) => props.theme.orange};
   }
-`
+`;
