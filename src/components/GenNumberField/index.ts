@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const GenNumberField = styled.h1`
-  background-color: ${(props) => props.theme['text-color']};
+  background-color: ${(props) => props.theme['field-color']};
   padding: 1rem;
   border-radius: 1rem;
   color: #000;

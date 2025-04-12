@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const GenWordsField = styled.h1`
   border-radius: 8px;
-  background-color: #fff;
+  background-color: ${(props) => props.theme['field-color']};
   padding: 1rem;
   color: #000;
   width: fit-content;
