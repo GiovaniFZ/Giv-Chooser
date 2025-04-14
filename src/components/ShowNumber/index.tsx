@@ -6,27 +6,24 @@ import { Button } from '../Button';
 import { useNavigate } from 'react-router-dom';
 import { ShowErrorComponent } from '../Error';
 
-const _paramsNumberSchema = z
-  .object({
-    max: z.number(),
-    min: z.number(),
-    count: z.number(),
-  })
-  .refine((data) => data.max > data.min, {
-    message: 'max should be greater!',
-  });
+const _paramsNumberSchema = z.object({
+  max: z.number(),
+  min: z.number(),
+  count: z.number(),
+  no_repeat: z.boolean(),
+});
 
 type ParamsNumber = z.infer<typeof _paramsNumberSchema>;
 
-export function ShowNumber({ max, min, count }: ParamsNumber) {
+export function ShowNumber({ max, min, count, no_repeat }: ParamsNumber) {
   const navigate = useNavigate();
   const {
     data: genNumbers,
     isLoading,
     error,
   } = useQuery({
-    queryKey: ['gen_number', count, max, min],
-    queryFn: () => GetNumbers({ max, min, count }),
+    queryKey: ['gen_number', count, max, min, no_repeat],
+    queryFn: () => GetNumbers({ max, min, count, no_repeat }),
   });
 
   if (isLoading) {
@@ -34,7 +31,7 @@ export function ShowNumber({ max, min, count }: ParamsNumber) {
   }
 
   if (error) {
-    return <ShowErrorComponent />;
+    return <ShowErrorComponent error={error.message} />;
   }
 
   if (!genNumbers) {

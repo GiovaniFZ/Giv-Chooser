@@ -1,7 +1,7 @@
 import { faArrowsRotate, faDice, faShuffle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { z } from 'zod';
-import { Input, InputField } from '../../components/Input';
+import { CheckboxContainer, Input, InputCheckbox, InputField } from '../../components/Input';
 import { Button } from '../../components/Button';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
@@ -15,10 +15,15 @@ export function GenerateNumber() {
       max: z.number().min(0, { message: 'max should be greater than 0!' }),
       min: z.number().min(0, { message: 'min should be greater than 0!' }),
       count: z.number().min(1, { message: 'count should be greater than 0!' }),
+      no_repeat: z.boolean().default(false),
     })
     .refine((data) => data.max > data.min, {
       message: 'max should be greater than min!',
       path: ['max'],
+    })
+    .refine((data) => !data.no_repeat || data.max - data.min >= data.count, {
+      message: 'if you do not want to repeat, max - min should be greater than count!',
+      path: ['no_repeat'],
     });
 
   type ParamsNumber = z.infer<typeof paramsNumberSchema>;
@@ -32,6 +37,7 @@ export function GenerateNumber() {
       max: 0,
       min: 0,
       count: 0,
+      no_repeat: false,
     },
     resolver: zodResolver(paramsNumberSchema),
   });
@@ -75,20 +81,27 @@ export function GenerateNumber() {
             {...register('max', { valueAsNumber: true })}
           />
         </InputField>
+        <CheckboxContainer>
+          <InputCheckbox type="checkbox" {...register('no_repeat')} />
+          <label htmlFor="no_repeat">No repeat</label>
+        </CheckboxContainer>
         {errors.min && <ShowError error={errors.min.message} />}
         {errors.max && <ShowError error={errors.max.message} />}
-        <Button type="submit">
-          <FontAwesomeIcon icon={faShuffle} style={{ paddingRight: '7px' }} />
-          Draw!
-        </Button>
-        <Button
-          onClick={() => {
-            reset();
-          }}
-        >
-          <FontAwesomeIcon icon={faArrowsRotate} style={{ paddingRight: '7px' }} />
-          Reset
-        </Button>
+        {errors.no_repeat && <ShowError error={errors.no_repeat.message} />}
+        <div>
+          <Button type="submit">
+            <FontAwesomeIcon icon={faShuffle} style={{ paddingRight: '7px' }} />
+            Draw!
+          </Button>
+          <Button
+            onClick={() => {
+              reset();
+            }}
+          >
+            <FontAwesomeIcon icon={faArrowsRotate} style={{ paddingRight: '7px' }} />
+            Reset
+          </Button>
+        </div>
       </form>
     </>
   );

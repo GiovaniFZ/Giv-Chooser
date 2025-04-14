@@ -19,7 +19,7 @@ export function Result() {
     return (
       <>
         <h1>The chosen numbers are:</h1>
-        <ShowNumber max={data.max} min={data.min} count={data.count} />
+        <ShowNumber max={data.max} min={data.min} count={data.count} no_repeat={data.no_repeat} />
       </>
     );
   }
