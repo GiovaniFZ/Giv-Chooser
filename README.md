@@ -1,8 +1,9 @@
 # Giv's Chooser
 
-- Hey, this is my main project, the Giv's Chooser!
-- Basically what is does is sort n numbers in a range, according with the count that user choose.
-- In the future, I want to sort other things like words too!
+- Hey, this is my main project, the **Giv's Chooser!**
+- With this tool, you can choose words or numbers in a range of your choice.
+- For example, let's suppose you have to choose a number between X and Y. You're uncertain about which number you pick. Well, you can use this to pick automatically for you 😉
+- Future plan: Implement tests and login with database
 
 ## Technologies
 - React
