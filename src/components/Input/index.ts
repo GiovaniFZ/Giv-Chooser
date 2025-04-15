@@ -34,7 +34,7 @@ export const InputCheckbox = styled(Input)`
   width: 1.2rem;
   height: 1.2rem;
   border-radius: 4px;
-  background-color: ${(props) => props.theme['gray-900']};
+  background-color: ${(props) => props.theme['field-color']};
   cursor: pointer;
   box-sizing: border-box;
   overflow: 'hidden';
