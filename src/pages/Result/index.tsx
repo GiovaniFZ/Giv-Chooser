@@ -27,7 +27,7 @@ export function Result() {
   return (
     <>
       <h1>The chosen words are:</h1>
-      <ShowWords words={data.words} count={data.count} />
+      <ShowWords words={data.words} count={data.count} no_repeat={data.no_repeat} />
     </>
   );
 }

@@ -7,11 +7,12 @@ import { GenWordsField } from './styles';
 const _paramsWordSchema = z.object({
   count: z.number(),
   words: z.array(z.string()),
+  no_repeat: z.boolean().default(false),
 });
 
 type ParamsWords = z.infer<typeof _paramsWordSchema>;
 
-export function ShowWords({ count, words }: ParamsWords) {
+export function ShowWords({ count, words, no_repeat }: ParamsWords) {
   const filteredWords = words.filter((word) => word.trim() !== '');
   const navigate = useNavigate();
   const {
@@ -20,7 +21,7 @@ export function ShowWords({ count, words }: ParamsWords) {
     error,
   } = useQuery({
     queryKey: ['gen_word', count, filteredWords],
-    queryFn: () => GetWords({ count, words: filteredWords }),
+    queryFn: () => GetWords({ count, words: filteredWords, no_repeat }),
   });
 
   if (isLoading) {
