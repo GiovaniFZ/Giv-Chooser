@@ -9,9 +9,12 @@ export const Header = styled.header`
   border-radius: 8px;
   align-items: center;
   a {
-    margin-left: 1rem;
+    color: white;
+    text-decoration: none;
+    margin-left: 2rem;
     @media (max-width: 640px) {
-      margin: 0 auto;
+      margin: auto;
+      padding-right: 2rem;
     }
   }
 `;

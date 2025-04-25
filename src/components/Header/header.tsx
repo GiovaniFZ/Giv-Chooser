@@ -43,7 +43,7 @@ export function HeaderComponent() {
     <>
       <Header>
         <Drawer onClick={() => setIsMenuOpen(!isMenuOpen)}></Drawer>
-        <a href="#" style={{ color: 'white', textDecoration: 'none' }}>
+        <a href="#">
           <FontAwesomeIcon icon={faDice} style={{ paddingRight: '7px' }} />
           Giv&apos;s Chooser
         </a>

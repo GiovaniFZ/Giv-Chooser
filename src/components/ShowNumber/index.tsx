@@ -38,7 +38,7 @@ export function ShowNumber({ max, min, count, no_repeat }: ParamsNumber) {
     return <h1>Something went wrong!</h1>;
   }
 
-  if (genNumbers.length < 6) {
+  if (genNumbers.length < 4) {
     return (
       <>
         <SmallNumbersContainer>
