@@ -9,7 +9,6 @@ interface GetNumberQuery {
 }
 
 export async function GetNumbers({ max, min, count, no_repeat }: GetNumberQuery) {
-  console.log(no_repeat);
   const responseDataSchema = z.object({
     result: z.array(z.number()),
   });
