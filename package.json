@@ -1,7 +1,7 @@
 {
   "name": "giv-chooser",
   "private": false,
-  "version": "1.0.12",
+  "version": "1.0.13",
   "type": "module",
   "author": "GivFNZ",
   "license": "MIT",
