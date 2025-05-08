@@ -94,3 +94,14 @@ export const HeaderLinks = styled.div`
     display: none;
   }
 `;
+
+export const LanguageSelector = styled.select`
+  background-color: ${(props) => props.theme['gray-900']};
+  color: ${(props) => props.theme['white-color']};
+  border-radius: 8px;
+  padding: 5px;
+  border: 0;
+  align-items: center;
+  justify-content: center;
+  margin-left: 1rem;
+`;

@@ -1,8 +1,9 @@
-import { Drawer, DrawerContainer, DrawerItem, Header, HeaderLinks } from './header';
+import { Drawer, DrawerContainer, DrawerItem, Header, HeaderLinks, LanguageSelector } from './header';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDice } from '@fortawesome/free-solid-svg-icons';
 import { Link, useLocation } from 'react-router-dom';
 import { useState, useRef, useEffect } from 'react';
+import i18n from '../../utils/i18n';
 
 interface NavItem {
   label: string;
@@ -19,6 +20,10 @@ const navItems: NavItem[] = [
 
 export function HeaderComponent() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const changeLanguage = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    i18n.changeLanguage(event.target.value);
+    localStorage.setItem('language', event.target.value);
+  };
   const menuRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
 
@@ -65,6 +70,10 @@ export function HeaderComponent() {
               </Link>
             ),
           )}
+          <LanguageSelector onChange={changeLanguage} defaultValue={i18n.language.toLowerCase()}>
+            <option value="en-us">English</option>
+            <option value="pt-br">Português</option>
+          </LanguageSelector>
         </HeaderLinks>
       </Header>
       {isMenuOpen && (

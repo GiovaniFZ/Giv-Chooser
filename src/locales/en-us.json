@@ -1,0 +1,18 @@
+{
+    "numbersChooser": "Numbers Chooser",
+    "numbersBetween": "number(s) between:",
+    "choose": "Choose",
+    "draw": "Draw",
+    "reset": "Reset",
+    "noRepeat": "No repeat",
+    "wordsChooser": "Words Chooser",
+    "wordsAmong": "word(s) among these",
+    "words": "word(s):",
+    "choosenNumbers": "The chosen numbers are:",
+    "choosenWords": "The chosen words are:",
+    "noData": "No data available",
+    "loading": "Loading...",
+    "numbers": "numbers",
+    "typeAnyWord": "Type any word",
+    "countShouldBeGreaterThanZero": "count should be greater than 0!"
+}

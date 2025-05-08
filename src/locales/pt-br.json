@@ -1,0 +1,17 @@
+{
+    "numbersChooser": "Sorteador de números",
+    "numbersBetween": "número(s) entre:",
+    "draw": "Sortear!",
+    "choose": "Escolha",
+    "reset": "Resetar",
+    "noRepeat": "Sem repetição",
+    "wordsChooser": "Sorteador de palavras",
+    "wordsAmong": "palavras(s) entre essas",
+    "words": "palavras(s):",
+    "choosenNumbers": "Os números escolhidos foram:",
+    "choosenWords": "As palavras escolhidos foram:",
+    "noData": "Sem dados disponíveis",
+    "loading": "Carregando...",
+    "typeAnyWord": "Digite alguma palavra",
+    "countShouldBeGreaterThanZero": "O contador deve ser maior que 0!"
+}

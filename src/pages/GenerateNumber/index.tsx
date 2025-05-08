@@ -7,9 +7,11 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { ShowError } from '../../components/Error';
+import { useTranslation } from 'react-i18next';
 
 export function GenerateNumber() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const paramsNumberSchema = z
     .object({
       max: z.number().min(0, { message: 'max should be greater than 0!' }),
@@ -52,18 +54,18 @@ export function GenerateNumber() {
         <h1>
           <FontAwesomeIcon icon={faDice} style={{ paddingBottom: '20px' }} />
           <br />
-          Numbers Chooser
+          {t('numbersChooser')}
         </h1>
       </header>
       <form onSubmit={handleSubmit(handleSubmitValues)}>
         <p>
-          Choose
+          {t('choose')}
           <Input
             type="number"
             {...register('count', { valueAsNumber: true })}
             style={{ marginLeft: '15px', marginRight: '15px' }}
           />
-          number(s) between:
+          {t('numbersBetween')}
         </p>
         {errors.count && <ShowError error={errors.count.message} />}
         <InputField>
@@ -83,7 +85,7 @@ export function GenerateNumber() {
         </InputField>
         <CheckboxContainer>
           <InputCheckbox type="checkbox" {...register('no_repeat')} />
-          <label htmlFor="no_repeat">No repeat</label>
+          <label htmlFor="no_repeat">{t('noRepeat')}</label>
         </CheckboxContainer>
         {errors.min && <ShowError error={errors.min.message} />}
         {errors.max && <ShowError error={errors.max.message} />}
@@ -91,7 +93,7 @@ export function GenerateNumber() {
         <div>
           <Button type="submit">
             <FontAwesomeIcon icon={faShuffle} style={{ paddingRight: '7px' }} />
-            Draw!
+            {t('draw')}
           </Button>
           <Button
             onClick={() => {
@@ -99,7 +101,7 @@ export function GenerateNumber() {
             }}
           >
             <FontAwesomeIcon icon={faArrowsRotate} style={{ paddingRight: '7px' }} />
-            Reset
+            {t('reset')}
           </Button>
         </div>
       </form>

@@ -5,6 +5,7 @@ import { GenNumberField, GenNumberFieldMargin, NumbersContainer, SmallNumbersCon
 import { Button } from '../Button';
 import { useNavigate } from 'react-router-dom';
 import { ShowErrorComponent } from '../Error';
+import { useTranslation } from 'react-i18next';
 
 const _paramsNumberSchema = z.object({
   max: z.number(),
@@ -26,8 +27,10 @@ export function ShowNumber({ max, min, count, no_repeat }: ParamsNumber) {
     queryFn: () => GetNumbers({ max, min, count, no_repeat }),
   });
 
+  const { t } = useTranslation();
+
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return <h1>{t('loading')}</h1>;
   }
 
   if (error) {

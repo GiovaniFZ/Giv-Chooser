@@ -9,11 +9,13 @@ import { faDice, faShuffle } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import { ShowError } from '../../components/Error';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 export function GenerateWord() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const paramsWordSchema = z
     .object({
-      count: z.number().min(1, { message: 'count should be greater than 0!' }),
+      count: z.number().min(1, { message: t('countShouldBeGreaterThanZero') }),
       words: z.array(z.string()),
       no_repeat: z.boolean().default(false),
     })
@@ -40,10 +42,10 @@ export function GenerateWord() {
       <h1>
         <FontAwesomeIcon icon={faDice} style={{ paddingBottom: '20px' }} />
         <br />
-        Words Chooser
+        {t('wordsChooser')}
       </h1>
       <h2>
-        Choose
+        {t('choose')}
         <Input
           style={{ margin: '10px' }}
           type="number"
@@ -51,23 +53,23 @@ export function GenerateWord() {
             valueAsNumber: true,
           })}
         />
-        word(s) among these
+        {t('wordsAmong')}
         <Input style={{ margin: '10px' }} type="number" onChange={(e) => setNumberOfWords(Number(e.target.value))} />
-        word(s):
+        {t('words')}
       </h2>
       {errors.count && <ShowError error={errors.count.message} />}
       <WordsFieldsContainer>
         {Array.from({ length: numberOfWords }).map((_, index) => (
-          <InputWord required key={index} placeholder="Type any word" {...register(`words.${index}`)} />
+          <InputWord required key={index} placeholder={t('typeAnyWord')} {...register(`words.${index}`)} />
         ))}
       </WordsFieldsContainer>
       <CheckboxContainer>
         <InputCheckbox type="checkbox" {...register('no_repeat')} />
-        <label htmlFor="no_repeat">No repeat</label>
+        <label htmlFor="no_repeat">{t('noRepeat')}</label>
       </CheckboxContainer>
       <Button type="submit">
         <FontAwesomeIcon icon={faShuffle} style={{ paddingRight: '7px' }} />
-        Draw!
+        {t('draw')}
       </Button>
     </form>
   );
