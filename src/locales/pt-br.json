@@ -2,6 +2,7 @@
     "and": "e",
     "numbersChooser": "Sorteador de números",
     "numbersBetween": "número(s) entre:",
+    "numbers": "Números",
     "draw": "Sortear!",
     "choose": "Escolha",
     "reset": "Resetar",
@@ -14,5 +15,11 @@
     "noData": "Sem dados disponíveis",
     "loading": "Carregando...",
     "typeAnyWord": "Digite alguma palavra",
-    "countShouldBeGreaterThanZero": "O contador deve ser maior que 0!"
+    "countShouldBeGreaterThanZero": "O contador deve ser maior que 0!",
+    "titles": {
+        "numbers": "Números",
+        "words": "Palavras",
+        "about": "Sobre",
+        "mainWebsite": "Site principal"
+    }
 }

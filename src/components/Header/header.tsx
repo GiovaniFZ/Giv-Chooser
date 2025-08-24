@@ -4,6 +4,7 @@ import { faDice } from '@fortawesome/free-solid-svg-icons';
 import { Link, useLocation } from 'react-router-dom';
 import { useState, useRef, useEffect } from 'react';
 import i18n from '../../utils/i18n';
+import { useTranslation } from 'react-i18next';
 
 interface NavItem {
   label: string;
@@ -11,14 +12,15 @@ interface NavItem {
   isExternal?: boolean;
 }
 
-const navItems: NavItem[] = [
-  { label: 'Numbers', href: '/' },
-  { label: 'Words', href: '/word' },
-  { label: 'About', href: '/about' },
-  { label: 'Main website', href: 'https://givfnz.com', isExternal: true },
-];
-
 export function HeaderComponent() {
+  const { t } = useTranslation();
+  const navItems: NavItem[] = [
+    { label: t('titles.numbers'), href: '/' },
+    { label: t('titles.words'), href: '/word' },
+    { label: t('titles.about'), href: '/about' },
+    { label: t('titles.mainWebsite'), href: 'https://givfnz.com', isExternal: true },
+  ];
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const changeLanguage = (event: React.ChangeEvent<HTMLSelectElement>) => {
     i18n.changeLanguage(event.target.value);

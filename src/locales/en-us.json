@@ -15,5 +15,11 @@
     "loading": "Loading...",
     "numbers": "numbers",
     "typeAnyWord": "Type any word",
-    "countShouldBeGreaterThanZero": "count should be greater than 0!"
+    "countShouldBeGreaterThanZero": "count should be greater than 0!",
+    "titles": {
+        "numbers": "Numbers",
+        "words": "Words",
+        "about": "About",
+        "mainWebsite": "Main website"
+    }
 }
