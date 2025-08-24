@@ -75,7 +75,7 @@ export function GenerateNumber() {
             aria-label="Minimum number"
             {...register('min', { valueAsNumber: true })}
           />
-          <p>and</p>
+          <p>{t('and')}</p>
           <Input
             type="number"
             placeholder="Max"
