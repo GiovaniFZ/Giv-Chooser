@@ -8,6 +8,9 @@ export const Header = styled.header`
   color: #fff;
   border-radius: 8px;
   align-items: center;
+  /* position: fixed; */ // TODO: Fix this
+  top: 0;
+  left: 0;
   a {
     color: white;
     text-decoration: none;
@@ -97,7 +100,6 @@ export const HeaderLinks = styled.div`
 
 export const LanguageSelector = styled.select`
   background-color: ${(props) => props.theme['gray-900']};
-  color: ${(props) => props.theme['white-color']};
   border-radius: 8px;
   padding: 5px;
   border: 0;
