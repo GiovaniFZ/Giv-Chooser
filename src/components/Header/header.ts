@@ -8,7 +8,7 @@ export const Header = styled.header`
   color: #fff;
   border-radius: 8px;
   align-items: center;
-  /* position: fixed; */ // TODO: Fix this
+  position: fixed;
   top: 0;
   left: 0;
   a {

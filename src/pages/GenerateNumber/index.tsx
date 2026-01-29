@@ -49,7 +49,7 @@ export function GenerateNumber() {
   };
 
   return (
-    <>
+    <div style={{ marginTop: '80px' }}>
       <header>
         <h1>
           <FontAwesomeIcon icon={faDice} style={{ paddingBottom: '20px' }} />
@@ -105,6 +105,6 @@ export function GenerateNumber() {
           </Button>
         </div>
       </form>
-    </>
+    </div>
   );
 }

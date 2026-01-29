@@ -40,7 +40,7 @@ export function GenerateWord() {
   return (
     <form onSubmit={handleSubmit(handleWordsValues)}>
       <h1>
-        <FontAwesomeIcon icon={faDice} style={{ paddingBottom: '20px' }} />
+        <FontAwesomeIcon icon={faDice} style={{ paddingBottom: '20px', marginTop: '50px' }} />
         <br />
         {t('wordsChooser')}
       </h1>
