@@ -54,7 +54,7 @@ export function ShowNumber({ max, min, count, no_repeat }: ParamsNumber) {
             navigate('/');
           }}
         >
-          Choose again!
+          {t('chooseAgain')}
         </Button>
       </>
     );
@@ -72,7 +72,7 @@ export function ShowNumber({ max, min, count, no_repeat }: ParamsNumber) {
           navigate('/');
         }}
       >
-        Choose again!
+        {t('chooseAgain')}
       </Button>
     </>
   );
